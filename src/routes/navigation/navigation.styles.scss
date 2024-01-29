@@ -16,12 +16,13 @@
 .nav-link {
 	cursor: pointer;
 	padding: 0 25px;
+	text-transform: uppercase;
 }
 
 .global-container {
 	max-width: 1400px;
 	height: 100%;
-	margin: 120px auto;
+	margin: 100px auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;

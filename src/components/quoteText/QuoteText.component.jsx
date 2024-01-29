@@ -1,4 +1,4 @@
-import './quoteText.styles.css';
+import './quoteText.styles.scss';
 
 const QuoteText = ({ quote }) => {
 	return (

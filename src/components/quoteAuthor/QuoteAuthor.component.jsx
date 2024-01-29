@@ -1,4 +1,4 @@
-import './quoteAuthor.styles.css';
+import './quoteAuthor.styles.scss';
 const QuoteAuthor = ({ author }) => {
 	return (
 		<div className="quote-author">

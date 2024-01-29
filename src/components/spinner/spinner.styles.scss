@@ -1,11 +1,8 @@
-.loading-container {
-	width: 120px;
-	height: 120px;
+.spinner-container {
+	margin-top: 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 16px solid #f3f3f3;
-	border-radius: 50%;
 }
 
 .loading-spinner {

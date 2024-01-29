@@ -4,17 +4,17 @@ import QuoteText from './../../components/quoteText/QuoteText.component';
 import QuoteAuthor from './../../components/quoteAuthor/QuoteAuthor.component';
 import Spinner from './../../components/spinner/Spinner.component';
 
-import './quoteGenerate.styles.css';
+import './quoteGenerate.styles.scss';
 const QuoteGenerate = () => {
 	const [quote, setQuote] = useState('');
 	const [author, setAuthor] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		getQuote();
+		fetchQuote();
 	}, []);
 
-	const getQuote = async () => {
+	const fetchQuote = async () => {
 		setIsLoading(true);
 		const response = await fetch('https://type.fit/api/quotes');
 		const quoteList = await response.json();
@@ -26,9 +26,8 @@ const QuoteGenerate = () => {
 		setAuthor(randomQuote.author);
 		setIsLoading(false);
 	};
-
 	const changeQuoteHandle = () => {
-		getQuote();
+		fetchQuote();
 	};
 
 	const twitterHandle = () => {
@@ -44,10 +43,10 @@ const QuoteGenerate = () => {
 					<QuoteText quote={quote} />
 					<QuoteAuthor author={author} />
 					<div className="button-container">
-						<button className="twitter-button" title="Tweet" onClick={twitterHandle}>
+						<button className="twitter-button quote-button" title="Tweet" onClick={twitterHandle}>
 							<i className="fab fa-twitter"></i>
 						</button>
-						<button className="new-quote" onClick={changeQuoteHandle}>
+						<button className="new-quote quote-button" onClick={changeQuoteHandle}>
 							New Quote
 						</button>
 					</div>

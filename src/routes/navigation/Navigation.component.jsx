@@ -1,21 +1,24 @@
 import { Fragment } from 'react';
-import { Outlet, Link, NavLink } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
-import './navigation.styles.css';
+import './navigation.styles.scss';
 
 const Navigation = () => {
 	return (
 		<Fragment>
 			<div className="navigation-container">
 				<Link to="/" className="logo-container nav-link">
-					HOME
+					Home
 				</Link>
 				<div className="navigation-links">
 					<Link className="nav-link" to="/quote">
-						QUOTE
+						Quote
 					</Link>
 					<Link className="nav-link" to="/scroll">
-						SCROLL
+						Scroll
+					</Link>
+					<Link className="nav-link" to="/countdown">
+						Countdown
 					</Link>
 				</div>
 			</div>
