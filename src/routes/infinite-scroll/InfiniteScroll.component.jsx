@@ -19,11 +19,15 @@ const InfiniteScroll = () => {
 	const fetchPhotos = async () => {
 		setIsLoading(true);
 		setIsError(null);
+
 		try {
 			const response = await fetch(apiUrl);
 			const photosData = await response.json();
 			setPhotosList((prevPhotos) => [...prevPhotos, ...photosData]);
 			setPage((prevPage) => prevPage + 1);
+			if (photosList.length > 50) {
+				throw new Error('Rate Limit Exceeded, take a little rest');
+			}
 		} catch (error) {
 			setIsError(error);
 		} finally {

@@ -1,0 +1,49 @@
+.countdown-form {
+	width: 100%;
+
+	input {
+		width: 100%;
+		// margin-bottom: 10px;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 20px;
+		background: #fff;
+		outline: none;
+		font-family: Nunito, sans-serif;
+	}
+
+	label {
+		color: #999;
+		transform: translate(0.25rem, -1.5rem);
+		transition: all 0.2s ease-out;
+	}
+
+	&:focus + label {
+		color: #111;
+		transform: translate(0, -2.75rem);
+	}
+
+	input:not(:placeholder-shown) + label {
+		color: #111;
+		transform: translate(0, -2.75rem);
+	}
+
+	label {
+		display: block;
+		transform: translate(0, -2.75rem);
+	}
+
+	@supports (not (-ms-ime-align: auto)) {
+		label {
+			color: #999;
+			transform: translate(0.65rem, -1.8rem);
+			transition: all 0.2s ease-out;
+		}
+
+		input:focus + label,
+		input:not(:placeholder-shown) + label {
+			color: #111;
+			transform: translate(0, -3.75rem);
+		}
+	}
+}

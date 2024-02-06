@@ -1,0 +1,42 @@
+.countdown-container {
+	min-width: 540px;
+	min-height: 304px;
+	h1 {
+		text-align: center;
+	}
+	.button-countdown {
+		display: flex;
+		justify-content: space-between;
+		margin: 0 auto;
+		button {
+			max-width: 200px;
+		}
+	}
+	//+ timer calculateor body
+	.timer-container {
+		border-top: 1px solid gray;
+		margin-top: 40px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.timer-title {
+			font-weight: bold;
+			font-size: 36px;
+		}
+		.countdown-values {
+			display: flex;
+			justify-content: space-between;
+			.countdown-value {
+				width: 120px;
+				margin: 10px 20px;
+				text-align: center;
+				.value {
+					font-weight: bold;
+					font-size: 34px;
+					line-height: 1;
+					margin: 10px;
+				}
+			}
+		}
+	}
+}
