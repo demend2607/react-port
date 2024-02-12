@@ -20,6 +20,9 @@ const Navigation = () => {
 					<Link className="nav-link" to="/countdown">
 						Countdown
 					</Link>
+					<Link className="nav-link" to="/todo">
+						TodoList
+					</Link>
 				</div>
 			</div>
 			<div className="global-container">

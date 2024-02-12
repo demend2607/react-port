@@ -1,0 +1,42 @@
+@mixin shrinkLabel {
+	top: 0px;
+	font-size: 18px;
+	color: #191919;
+	font-weight: bold;
+}
+
+.countdown-form-input {
+	position: relative;
+	margin: 12px 0;
+	font-family: Nunito, sans-serif;
+	.countdown-input {
+		width: 100%;
+		padding: 10px;
+		display: block;
+		border: 1px solid #ccc;
+		border-radius: 20px;
+		background: #fff;
+		outline: none;
+		&:focus {
+			outline: none;
+		}
+
+		&:focus ~ .countdown-label {
+			@include shrinkLabel();
+		}
+	}
+	.countdown-label {
+		font-size: 16px;
+		pointer-events: none; //+ Allow click across label
+		color: #909090;
+
+		transform: translate(0.25rem, -1.5rem);
+		transition: 200ms ease-out all;
+		position: absolute;
+		left: 6px;
+		top: 34px;
+		&.shrink {
+			@include shrinkLabel();
+		}
+	}
+}

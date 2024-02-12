@@ -3,14 +3,14 @@ import { useCountdown } from '../../hooks/useCountdown.component';
 
 import CountdownButton from '../../components/buttons/countdown-button/CountdownButton.component';
 
-import CountDownForm from '../../components/countDownForm/CountDownForm.component';
-
-import './countDown.styles.scss';
+import './countdown.styles.scss';
+import FormInput from '../../components/formInput/FormInput.component';
 
 const CountDown = () => {
 	const [targetDate, setTargetDate] = useState('');
 	const [days, hours, minutes, seconds] = useCountdown(targetDate);
-	const [title, setTitle] = useState('Death will come in');
+	const [title, setTitle] = useState('');
+	const minPosDate = new Date().toISOString().split('T')[0];
 
 	const handleResetCountdown = () => {
 		setTitle('');
@@ -20,22 +20,17 @@ const CountDown = () => {
 		<div className="countdown-container">
 			<h1>Countdown Timer</h1>
 			<form className="countdown-form">
-				<input
+				<FormInput
 					type="text"
-					className="title"
-					id="title"
 					placeholder=" "
 					onChange={(e) => setTitle(e.target.value)}
+					label="Set Timer Title"
+					value={title}
+					htmlFor="title"
 				/>
-				<label htmlFor="title">Timer Ttile</label>
-				<input
-					type="date"
-					className="date-picker"
-					min={new Date().toISOString().split('T')[0]}
-					onChange={(e) => setTargetDate(e.target.value)}
-				/>
+				<FormInput type="date" min={minPosDate} onChange={(e) => setTargetDate(e.target.value)} />
 				<div className="button-countdown">
-					<CountdownButton onClick={handleResetCountdown} disabled={!targetDate}>
+					<CountdownButton type="submit" onClick={handleResetCountdown} disabled={!targetDate}>
 						Reset timer
 					</CountdownButton>
 				</div>

@@ -1,9 +1,9 @@
 import './countdownButton.styles.scss';
 
-const CountdownButton = ({ children, type, ...otherprops }) => {
+const CountdownButton = ({ children, ...otherprops }) => {
 	return (
 		<>
-			<button type={type} className="countdown-btn" {...otherprops}>
+			<button className="countdown-btn" {...otherprops}>
 				{children}
 			</button>
 		</>

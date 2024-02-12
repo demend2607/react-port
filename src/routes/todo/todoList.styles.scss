@@ -1,0 +1,81 @@
+.todo_lsit-container {
+	width: 100%;
+	h1 {
+		text-align: center;
+	}
+	.todo_list-form {
+		margin: 0 auto 30px;
+		display: flex;
+		max-width: 380px;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.todo_list-btn {
+		margin-left: 10px;
+		cursor: pointer;
+		font-size: 18px;
+		height: 38px;
+		bottom: none;
+		border-radius: 10px;
+		color: #fff;
+		background: #333;
+		outline: none;
+		padding: 6px 26px;
+		box-shadow: 0 0.3rem rgba(121, 121, 121, 0.65);
+		&:hover {
+			filter: brightness(110%);
+		}
+		&:active {
+			transform: translate(0, 0.3rem);
+			box-shadow: 0 0.1rem rgba(255, 255, 255, 0.3);
+		}
+	}
+	.drop-container {
+		display: flex;
+		justify-content: center;
+		:not(:first-child) {
+			margin-left: 12px;
+		}
+		.drop-card {
+			display: flex;
+			width: 400px;
+			flex-direction: column;
+			// margin-left: 5px;
+			min-height: 310px;
+			border: 1px solid #333;
+			border-radius: 14px;
+			.title-block {
+				height: 40px;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #dfdf00;
+				border-bottom: 1px solid #333;
+				border-radius: 14px;
+
+				span {
+					color: #707070;
+				}
+			}
+
+			.todo_list-item {
+				border: 1px solid #333;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin: 6px;
+				border-radius: 12px;
+				p {
+					margin-left: 4px;
+				}
+				.delete-btn {
+					align-items: center;
+					margin-right: 6px;
+					cursor: pointer;
+					display: flex;
+				}
+			}
+		}
+	}
+}
