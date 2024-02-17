@@ -1,0 +1,14 @@
+.todo_lsit-container {
+	width: 100%;
+	h1 {
+		text-align: center;
+	}
+
+	.dnd-container {
+		display: flex;
+		justify-content: center;
+		:not(:first-child) {
+			margin-left: 12px;
+		}
+	}
+}

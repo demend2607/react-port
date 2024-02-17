@@ -10,9 +10,11 @@ const CountDown = () => {
 	const [targetDate, setTargetDate] = useState('');
 	const [days, hours, minutes, seconds] = useCountdown(targetDate);
 	const [title, setTitle] = useState('');
+
 	const minPosDate = new Date().toISOString().split('T')[0];
 
-	const handleResetCountdown = () => {
+	const handleResetCountdown = (e) => {
+		e.preventDefault();
 		setTitle('');
 		setTargetDate('');
 	};
@@ -30,7 +32,7 @@ const CountDown = () => {
 				/>
 				<FormInput type="date" min={minPosDate} onChange={(e) => setTargetDate(e.target.value)} />
 				<div className="button-countdown">
-					<CountdownButton type="submit" onClick={handleResetCountdown} disabled={!targetDate}>
+					<CountdownButton type="reset" onClick={handleResetCountdown} disabled={!targetDate}>
 						Reset timer
 					</CountdownButton>
 				</div>

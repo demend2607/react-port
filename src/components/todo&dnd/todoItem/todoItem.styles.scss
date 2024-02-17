@@ -1,0 +1,17 @@
+.todo_list-item {
+	border: 1px solid #333;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 6px;
+	border-radius: 12px;
+	p {
+		margin-left: 4px;
+	}
+	.delete-btn {
+		align-items: center;
+		margin-right: 6px;
+		cursor: pointer;
+		display: flex;
+	}
+}
