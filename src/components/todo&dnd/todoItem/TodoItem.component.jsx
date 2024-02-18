@@ -9,16 +9,14 @@ const TodoItem = ({ todos, setTodos, todo }) => {
 		setTodos(rTodos);
 		localStorage.setItem('todos', JSON.stringify(rTodos));
 
-		toast('Todo removed');
+		toast('Todo removed', { icon: '🗑️' });
 	};
 
 	return (
-		<div>
-			<li className="todo_list-item">
-				<p>{todo.name}</p>
-				<DeleteIcon className="delete-btn" onClick={() => handleDeleteTodos(todo.id)} />
-			</li>
-		</div>
+		<li className="todo_list-item">
+			<p>{todo.name}</p>
+			<DeleteIcon className="delete-btn" onClick={() => handleDeleteTodos(todo.id)} />
+		</li>
 	);
 };
 export default TodoItem;
