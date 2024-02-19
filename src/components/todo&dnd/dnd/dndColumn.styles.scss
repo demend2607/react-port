@@ -1,30 +1,4 @@
 .dnd-container {
 	display: flex;
 	justify-content: center;
-	:not(:first-child) {
-		margin-left: 12px;
-	}
-	.dnd-card {
-		display: flex;
-		width: 400px;
-		flex-direction: column;
-		// margin-left: 5px;
-		min-height: 310px;
-		border: 1px solid #333;
-		border-radius: 14px;
-		.title {
-			height: 40px;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: #dfdf00;
-			border-bottom: 1px solid #333;
-			border-radius: 14px;
-
-			span {
-				color: #707070;
-			}
-		}
-	}
 }

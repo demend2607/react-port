@@ -5,6 +5,7 @@
 	justify-content: space-between;
 	margin: 6px;
 	border-radius: 12px;
+
 	p {
 		margin-left: 4px;
 	}
@@ -14,4 +15,11 @@
 		cursor: pointer;
 		display: flex;
 	}
+}
+.drag-25 {
+	opacity: 25%;
+	border: 1px solid #ff0d86;
+}
+.drag-100 {
+	opacity: 100%;
 }

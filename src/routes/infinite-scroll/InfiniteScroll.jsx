@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import PhotosList from '../../components/photosList/PhotosList.component';
 import Spinner from '../../components/spinner/Spinner.component';
 
-import './infiniteScroll.styles.scss';
-
-const InfiniteScroll = () => {
+export const InfiniteScroll = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [photosList, setPhotosList] = useState([]);
 	const [page, setPage] = useState(1);
@@ -43,7 +40,6 @@ const InfiniteScroll = () => {
 
 	useEffect(() => {
 		fetchPhotos();
-		//eslint-disable-next-line
 	}, []);
 
 	const handleScroll = () => {
@@ -85,5 +81,3 @@ const InfiniteScroll = () => {
 		</div>
 	);
 };
-
-export default InfiniteScroll;

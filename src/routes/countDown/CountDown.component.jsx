@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useCountdown } from '../../hooks/useCountdown.component';
 
 import CountdownButton from '../../components/buttons/countdown-button/CountdownButton.component';

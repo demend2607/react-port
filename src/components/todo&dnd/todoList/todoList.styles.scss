@@ -1,0 +1,47 @@
+.dnd-card {
+	display: flex;
+	width: 380px;
+	flex-direction: column;
+	height: 340px;
+	border: 1px solid #333;
+	border-radius: 14px;
+
+	&:nth-child(n + 2) {
+		margin-left: 10px;
+	}
+	.title {
+		min-height: 40px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #dfdf00;
+		border-bottom: 1px solid #333;
+		border-radius: 14px;
+
+		span {
+			color: #707070;
+		}
+	}
+	.todo-item_body {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		height: 100%;
+		&::-webkit-scrollbar {
+			border-radius: 20px;
+			width: 8px;
+		}
+		&::-webkit-scrollbar-track {
+			border: 20px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: #999;
+			border-radius: 10px;
+		}
+	}
+}
+.bg-200 {
+	background-color: rgba(176, 248, 245, 0.404);
+	box-shadow: #333;
+}
