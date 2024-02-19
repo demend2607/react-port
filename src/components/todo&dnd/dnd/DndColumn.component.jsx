@@ -11,7 +11,7 @@ const DndColumn = ({ todos, setTodos }) => {
 
 	useEffect(() => {
 		const fTodos = todos.filter((todo) => todo.status === 'todo');
-		const fInProgress = todos.filter((todo) => todo.status === 'inProgress');
+		const fInProgress = todos.filter((todo) => todo.status === 'inprogress');
 		const fCompleted = todos.filter((todo) => todo.status === 'completed');
 
 		setTodoList(fTodos);
