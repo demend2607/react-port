@@ -37,7 +37,8 @@ const QuoteGenerate = () => {
 		window.open(twitterUrl, '_blank');
 	};
 	return (
-		<>
+		<div className="quote-generate">
+			<h1>Quote Generator</h1>
 			{isLoading ? (
 				<Spinner />
 			) : (
@@ -54,7 +55,7 @@ const QuoteGenerate = () => {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 

@@ -40,7 +40,9 @@ const CreateTodo = ({ todos, setTodos }) => {
 				value={todo.name}
 				onChange={(e) => setTodo({ ...todo, id: v4(), name: e.target.value, status: 'todo' })}
 			/>
-			<button className="todo_list-btn">Add todo</button>
+			<button type="submit" className="todo_list-btn">
+				Add todo
+			</button>
 		</form>
 	);
 };
