@@ -1,6 +1,11 @@
+import { FC } from 'react';
 import './quoteText.styles.scss';
 
-const QuoteText = ({ quote }) => {
+type QuoteProps = {
+	quote: string;
+};
+
+const QuoteText: FC<QuoteProps> = ({ quote }) => {
 	return (
 		<div className="quote-text">
 			<i className="fas fa-quote-left"></i>

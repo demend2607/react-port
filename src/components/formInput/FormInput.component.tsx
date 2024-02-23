@@ -1,6 +1,12 @@
+import { FC, InputHTMLAttributes } from 'react';
 import './formInput.styles.scss';
 
-const FormInput = ({ label, ...otherProps }) => {
+type FormInputProps = {
+	label: string;
+	value: string;
+} & InputHTMLAttributes<HTMLInputElement>;
+
+const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
 	return (
 		<div className="countdown-form-input">
 			<input className="countdown-input" {...otherProps} />

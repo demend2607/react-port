@@ -23,6 +23,8 @@ const InfiniteScroll = () => {
 		try {
 			const response = await fetch(apiUrl);
 			const photosData = await response.json();
+			console.log(photosData);
+
 			setPhotosList((prevPhotos) => [...prevPhotos, ...photosData]);
 			setPage((prevPage) => prevPage + 1);
 			if (photosList.length > 50) {

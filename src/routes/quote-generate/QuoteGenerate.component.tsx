@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEventHandler } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
 
-import QuoteText from './../../components/quoteText/QuoteText.component';
-import QuoteAuthor from './../../components/quoteAuthor/QuoteAuthor.component';
-import Spinner from './../../components/spinner/Spinner.component';
-import QuoteButton from '../../components/buttons/quote-Button/QuoteButton.component';
+import QuoteText from '../../components/quoteText/QuoteText.component';
+import QuoteAuthor from '../../components/quoteAuthor/QuoteAuthor.component';
+import Spinner from '../../components/spinner/Spinner.component';
+import QuoteButton, {
+	BUTTON_TYPE_CLASSES,
+} from '../../components/buttons/quote-Button/QuoteButton.component';
 
 import './quoteGenerate.styles.scss';
 
@@ -29,7 +32,11 @@ const QuoteGenerate = () => {
 		setIsLoading(false);
 	};
 	const changeQuoteHandle = () => {
-		fetchQuote();
+		toast('Loading new quote...', { icon: '🔃' });
+		setIsLoading(true);
+		setTimeout(() => {
+			fetchQuote();
+		}, 1000);
 	};
 
 	const twitterHandle = () => {
@@ -38,6 +45,7 @@ const QuoteGenerate = () => {
 	};
 	return (
 		<div className="quote-generate">
+			<Toaster />
 			<h1>Quote Generator</h1>
 			{isLoading ? (
 				<Spinner />
@@ -46,10 +54,10 @@ const QuoteGenerate = () => {
 					<QuoteText quote={quote} />
 					<QuoteAuthor author={author} />
 					<div className="button-container">
-						<QuoteButton buttonType="twitter" title="Tweet" onClick={twitterHandle}>
+						<QuoteButton buttonType={BUTTON_TYPE_CLASSES.twitter} title="Tweet" onClick={twitterHandle}>
 							<i className="fab fa-twitter"></i>
 						</QuoteButton>
-						<QuoteButton buttonType="default" onClick={changeQuoteHandle}>
+						<QuoteButton buttonType={BUTTON_TYPE_CLASSES.default} onClick={changeQuoteHandle}>
 							New Quote
 						</QuoteButton>
 					</div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCountdown } from '../../hooks/useCountdown.component';
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 
 import CountdownButton from '../../components/buttons/countdown-button/CountdownButton.component';
 
@@ -16,6 +16,7 @@ const CountDown = () => {
 	const minPosDate = new Date().toISOString().split('T')[0];
 
 	useEffect(() => {
+		if (!localStorage['countdown']) return;
 		setCountdown(JSON.parse(localStorage.getItem('countdown')));
 		setTargetDate(countdown.date);
 		console.log(countdown, 'local', localStorage['countdown']);
@@ -34,14 +35,12 @@ const CountDown = () => {
 				localStorage.removeItem('countdown');
 				const data = { title: title, date: targetDate };
 				localStorage.setItem('countdown', JSON.stringify(data));
-				toast.success('Task Created');
 				return data;
 			});
 		} else {
 			setCountdown(() => {
 				const data = { title: title, date: targetDate };
 				localStorage.setItem('countdown', JSON.stringify(data));
-				toast.success('Task Created');
 				return data;
 			});
 		}
@@ -56,10 +55,12 @@ const CountDown = () => {
 			localStorage.setItem('countdown', JSON.stringify(data));
 			return data;
 		});
+		toast('Reset countdown timer', { icon: '🗑️' });
 		setTargetDate('');
 	};
 	return (
 		<div className="countdown-container">
+			<Toaster />
 			<h1>Countdown Timer</h1>
 			<form className="countdown-form">
 				<FormInput
@@ -72,7 +73,7 @@ const CountDown = () => {
 				/>
 				<FormInput value={targetDate} type="date" min={minPosDate} onChange={handleDate} />
 				<div className="button-countdown">
-					<CountdownButton type="submit" onClick={handleSubmit}>
+					<CountdownButton type="submit" onClick={handleSubmit} disabled={countdown.lenght === 0}>
 						Start Countdown
 					</CountdownButton>
 					<CountdownButton type="reset" onClick={handleResetCountdown} disabled={!targetDate}>

@@ -10,6 +10,7 @@ const CreateTodo = ({ todos, setTodos }) => {
 	const [todo, setTodo] = useState({ id: '', name: '', status: 'todo' });
 
 	useEffect(() => {
+		if (!localStorage['todos']) return;
 		setTodos(JSON.parse(localStorage.getItem('todos')));
 	}, []);
 	const handleCreateTodo = (e) => {
