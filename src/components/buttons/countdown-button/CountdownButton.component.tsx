@@ -1,4 +1,5 @@
 import { FC, ButtonHTMLAttributes } from 'react';
+
 import './countdownButton.styles.scss';
 
 const CountdownButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...otherprops }) => {
@@ -10,4 +11,5 @@ const CountdownButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children
 		</>
 	);
 };
+
 export default CountdownButton;

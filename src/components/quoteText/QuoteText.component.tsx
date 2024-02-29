@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import './quoteText.styles.scss';
 
+import './quoteText.styles.scss';
 type QuoteProps = {
 	quote: string;
 };

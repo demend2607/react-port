@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 
+import { CreateTodoProps, Todos } from '../../../routes/todo/TodoDnd.component.js';
 import TodoList from '../todoList/TodoList.component';
 
 import './dndColumn.styles.scss';
 
-const DndColumn = ({ todos, setTodos }) => {
-	const [todoList, setTodoList] = useState([]);
-	const [inProgress, setInProgress] = useState([]);
-	const [completed, setCompleted] = useState([]);
+const DndColumn = ({ todos, setTodos }: CreateTodoProps) => {
+	const [todoList, setTodoList] = useState<Todos[]>([]);
+	const [inProgress, setInProgress] = useState<Todos[]>([]);
+	const [completed, setCompleted] = useState<Todos[]>([]);
 
 	useEffect(() => {
 		const fTodos = todos.filter((todo) => todo.status === 'todo');

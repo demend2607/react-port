@@ -1,15 +1,22 @@
 import { useDrop } from 'react-dnd';
 import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 
+import { CreateTodoProps, Todos } from '../../../routes/todo/TodoDnd.component.js';
 import TodoItem from '../todoItem/TodoItem.component';
 
 import './todoList.styles.scss';
 
-const TodoList = ({ todos, setTodos, status, statusList }) => {
+type TodoListProps = CreateTodoProps & {
+	status: string;
+	statusList: [Todos[], Todos[], Todos[]];
+};
+
+const TodoList = ({ todos, setTodos, status, statusList }: TodoListProps) => {
 	const [todosList, inProgress, completed] = statusList;
 	const [{ isOver }, drop] = useDrop(() => ({
 		accept: 'todo',
-		drop: (item) => {
+		drop: (item: Todos) => {
 			addItemToList(item.id);
 		},
 		collect: (monitor) => ({
@@ -33,8 +40,8 @@ const TodoList = ({ todos, setTodos, status, statusList }) => {
 		todosToMap = completed;
 	}
 	//+ Change status on drop todo
-	const addItemToList = (id) => {
-		setTodos((prev) => {
+	const addItemToList = (id: string) => {
+		setTodos((prev): Todos[] => {
 			const mTodos = prev.map((todo) => {
 				if (todo.id === id) {
 					return {
@@ -49,6 +56,7 @@ const TodoList = ({ todos, setTodos, status, statusList }) => {
 			return mTodos;
 		});
 	};
+	console.log('list', statusList);
 
 	return (
 		<div ref={drop} className={`dnd-card ${isOver ? 'bg-200' : ''}`}>
@@ -58,7 +66,7 @@ const TodoList = ({ todos, setTodos, status, statusList }) => {
 			<div className="todo-item_body">
 				{todosToMap.length > 0 &&
 					todosToMap.map((todo, index) => (
-						<TodoItem key={todo.id} status={status} todo={todo} todos={todos} setTodos={setTodos}></TodoItem>
+						<TodoItem key={todo.id} todo={todo} todos={todos} setTodos={setTodos}></TodoItem>
 					))}
 			</div>
 		</div>

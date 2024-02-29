@@ -4,7 +4,12 @@ import { ReactComponent as DeleteIcon } from '../../../assets/delete-icon.svg';
 
 import './todoItem.styles.scss';
 import { useDrag } from 'react-dnd';
-const TodoItem = ({ todos, setTodos, todo }) => {
+import { CreateTodoProps, Todos } from '../../../routes/todo/TodoDnd.component.js';
+
+type TodoItemProps = CreateTodoProps & {
+	todo: Todos;
+};
+const TodoItem = ({ todos, setTodos, todo }: TodoItemProps) => {
 	const [{ isDragging }, drag] = useDrag(() => ({
 		type: 'todo',
 		item: { id: todo.id },
@@ -14,7 +19,7 @@ const TodoItem = ({ todos, setTodos, todo }) => {
 	}));
 	console.log(isDragging);
 
-	const handleDeleteTodos = (id) => {
+	const handleDeleteTodos = (id: string) => {
 		const rTodos = todos.filter((t) => t.id !== id);
 		setTodos(rTodos);
 		localStorage.setItem('todos', JSON.stringify(rTodos));

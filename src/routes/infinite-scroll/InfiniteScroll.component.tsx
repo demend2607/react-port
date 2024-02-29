@@ -6,9 +6,20 @@ import Spinner from '../../components/spinner/Spinner.component';
 
 import './infiniteScroll.styles.scss';
 
+export type PhotoListProps = {
+	id: string;
+	alt_description: string;
+	urls: {
+		regular: string;
+	};
+	links: {
+		html: string;
+	};
+};
+
 const InfiniteScroll = () => {
 	const [isLoading, setIsLoading] = useState(false);
-	const [photosList, setPhotosList] = useState([]);
+	const [photosList, setPhotosList] = useState<PhotoListProps[]>([]);
 	const [page, setPage] = useState(1);
 	const [isError, setIsError] = useState(null);
 
@@ -30,8 +41,8 @@ const InfiniteScroll = () => {
 			if (photosList.length > 50) {
 				throw new Error('Rate Limit Exceeded, take a little rest');
 			}
-		} catch (error) {
-			setIsError(error);
+		} catch (error: Error | any) {
+			setIsError(error.message);
 		} finally {
 			if (page < 1) {
 				setIsLoading(false);
@@ -74,7 +85,7 @@ const InfiniteScroll = () => {
 				<h1>Rate Limit Exceeded, take a little rest</h1>
 			) : (
 				<div className="image-container">
-					{photosList.map((photo) => {
+					{photosList.map((photo: PhotoListProps) => {
 						return (
 							<Link to={photo.links.html} key={photo.id} target="_blank">
 								<PhotosList photo={photo} />

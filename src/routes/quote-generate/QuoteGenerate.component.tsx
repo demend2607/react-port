@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEventHandler } from 'react';
+import { useState, useEffect } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 
 import QuoteText from '../../components/quoteText/QuoteText.component';
