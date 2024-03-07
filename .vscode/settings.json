@@ -1,0 +1,6 @@
+{
+	"autoimport.doubleQuotes": true,
+	"javascript.preferences.importModuleSpecifierEnding": "minimal",
+	"typescript.preferences.importModuleSpecifierEnding": "minimal",
+	"typescript.preferences.includePackageJsonAutoImports": "on"
+}
