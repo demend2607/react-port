@@ -4,10 +4,11 @@ import { ReactComponent as DeleteIcon } from '../../../assets/delete-icon.svg';
 
 import './todoItem.styles.scss';
 import { useDrag } from 'react-dnd';
-import { CreateTodoProps, Todos } from '../../../routes/todo/TodoDnd.component.js';
+import { TodosState } from '../../../store/todo/todo.slice';
+import { CreateTodoProps } from '../createTodo/CreateTodo.component';
 
 type TodoItemProps = CreateTodoProps & {
-	todo: Todos;
+	todo: TodosState;
 };
 const TodoItem = ({ todos, setTodos, todo }: TodoItemProps) => {
 	const [{ isDragging }, drag] = useDrag(() => ({

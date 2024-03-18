@@ -2,5 +2,6 @@
 	"autoimport.doubleQuotes": true,
 	"javascript.preferences.importModuleSpecifierEnding": "minimal",
 	"typescript.preferences.importModuleSpecifierEnding": "minimal",
-	"typescript.preferences.includePackageJsonAutoImports": "on"
+	"typescript.preferences.includePackageJsonAutoImports": "on",
+	"typescript.tsdk": "node_modules\\typescript\\lib"
 }

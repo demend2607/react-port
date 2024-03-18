@@ -1,13 +1,10 @@
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-
-import { ThemeContext } from '../../context/ThemeContext';
 
 import Toggle from '../../components/buttons/toggle/Toggle.component';
 import './navigation.styles.scss';
 
 const Navigation = () => {
-	const { toggleTheme, themeValue } = useContext(ThemeContext);
 	return (
 		<Fragment>
 			<div className="navigation-container">
