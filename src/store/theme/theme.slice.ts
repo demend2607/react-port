@@ -5,7 +5,7 @@ export type ThemeState = {
 };
 
 const THEME_INITIAL_STATE: ThemeState = {
-	themeValue: 'default',
+	themeValue: localStorage.getItem('themeValue') || 'default',
 };
 
 export const themeSlice = createSlice({
@@ -13,11 +13,12 @@ export const themeSlice = createSlice({
 	initialState: THEME_INITIAL_STATE,
 	reducers: {
 		toggleTheme: (state) => {
-			const themeVaule = state.themeValue === 'default' ? 'custom' : 'default';
-			return { ...state, themeValue: themeVaule };
+			const themeValue = state.themeValue === 'default' ? 'custom' : 'default';
+			localStorage.setItem('themeValue', themeValue);
+			return { ...state, themeValue: themeValue };
 		},
 	},
 });
 
 export const { toggleTheme } = themeSlice.actions;
-export default themeSlice.reducer;
+export default themeSlice;

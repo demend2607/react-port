@@ -4,13 +4,15 @@ import { ReactComponent as DeleteIcon } from '../../../assets/delete-icon.svg';
 
 import './todoItem.styles.scss';
 import { useDrag } from 'react-dnd';
-import { TodosState } from '../../../store/todo/todo.slice';
-import { CreateTodoProps } from '../createTodo/CreateTodo.component';
+import { TodoState, removeTodo } from '../../../store/todo/todo.slice';
+import { useDispatch } from 'react-redux';
+import { CreateTodoProps } from '../../../routes/todo/TodoDnd.component';
 
 type TodoItemProps = CreateTodoProps & {
-	todo: TodosState;
+	todo: TodoState;
 };
-const TodoItem = ({ todos, setTodos, todo }: TodoItemProps) => {
+const TodoItem = ({ todo }: TodoItemProps) => {
+	const dispatch = useDispatch();
 	const [{ isDragging }, drag] = useDrag(() => ({
 		type: 'todo',
 		item: { id: todo.id },
@@ -21,9 +23,7 @@ const TodoItem = ({ todos, setTodos, todo }: TodoItemProps) => {
 	console.log(isDragging);
 
 	const handleDeleteTodos = (id: string) => {
-		const rTodos = todos.filter((t) => t.id !== id);
-		setTodos(rTodos);
-		localStorage.setItem('todos', JSON.stringify(rTodos));
+		dispatch(removeTodo(id));
 
 		toast('Todo removed', { icon: '🗑️' });
 	};

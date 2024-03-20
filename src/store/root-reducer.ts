@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import themeReducer from './theme/theme.slice';
-import todoReducer from './todo/todo.slice';
+import themeSlice from './theme/theme.slice';
+import todoSlice from './todo/todo.slice';
 
-export const rootReducer = combineReducers({ themeReducer, todoReducer });
+export const rootReducer = combineReducers({ theme: themeSlice.reducer, todo: todoSlice.reducer });

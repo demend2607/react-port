@@ -1,22 +1,24 @@
 import { useDrop } from 'react-dnd';
 import { toast } from 'react-hot-toast';
 
-import { CreateTodoProps } from '../createTodo/CreateTodo.component';
-import { TodosState } from '../../../store/todo/todo.slice';
+import { TodosState, TodoState } from '../../../store/todo/todo.slice';
 import TodoItem from '../todoItem/TodoItem.component';
 
 import './todoList.styles.scss';
+import { CreateTodoProps } from '../../../routes/todo/TodoDnd.component';
+import { useSelector } from 'react-redux';
 
 type TodoListProps = CreateTodoProps & {
 	status: string;
-	statusList: [TodosState[], TodosState[], TodosState[]];
+	statusList: [TodoState[], TodoState[], TodoState[]];
 };
 
-const TodoList = ({ todos, setTodos, status, statusList }: TodoListProps) => {
+const TodoList = ({ todos, status, statusList }: TodoListProps) => {
+	const todoItem = useSelector((state: TodoState) => state);
 	const [todosList, inProgress, completed] = statusList;
 	const [{ isOver }, drop] = useDrop(() => ({
 		accept: 'todo',
-		drop: (item: TodosState) => {
+		drop: (item: TodoState) => {
 			addItemToList(item.id);
 		},
 		collect: (monitor) => ({
@@ -40,20 +42,20 @@ const TodoList = ({ todos, setTodos, status, statusList }: TodoListProps) => {
 	}
 	//+ Change status on drop todo
 	const addItemToList = (id: string) => {
-		setTodos((prev): TodosState[] => {
-			const mTodos = prev.map((todo) => {
-				if (todo.id === id) {
-					return {
-						...todo,
-						status: status,
-					};
-				}
-				return todo;
-			});
-			localStorage.setItem('todos', JSON.stringify(mTodos));
-			toast('Task status changed', { icon: '📓' });
-			return mTodos;
-		});
+		// setTodos((prev): TodosState[] => {
+		// 	const mTodos = prev.map((todo):TodoState[] => {
+		// 		if (todo. === id) {
+		// 			return {
+		// 				...todo,
+		// 				status: status,
+		// 			};
+		// 		}
+		// 		return todo;
+		// 	});
+		// 	localStorage.setItem('todos', JSON.stringify(mTodos));
+		// 	toast('Task status changed', { icon: '📓' });
+		// 	return mTodos;
+		// });
 	};
 
 	return (
@@ -63,9 +65,7 @@ const TodoList = ({ todos, setTodos, status, statusList }: TodoListProps) => {
 			</div>
 			<div className="todo-item_body">
 				{todosToMap.length > 0 &&
-					todosToMap.map((todo, index) => (
-						<TodoItem key={todo.id} todo={todo} todos={todos} setTodos={setTodos}></TodoItem>
-					))}
+					todosToMap.map((todo, index) => <TodoItem key={todo.id} todo={todo} todos={todos}></TodoItem>)}
 			</div>
 		</div>
 	);

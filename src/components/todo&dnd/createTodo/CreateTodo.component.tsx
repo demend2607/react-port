@@ -1,40 +1,35 @@
-import { useState, useEffect, Dispatch, FormEvent, SetStateAction } from 'react';
-import { v4 } from 'uuid';
+import { useState, FormEvent, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 
-import FormInput from '../../formInput/FormInput.component';
-import { TodosState } from '../../../store/todo/todo.slice';
+import { addTodo } from '../../../store/todo/todo.slice';
 
+import FormInput from '../../formInput/FormInput.component';
 import './createTodo.styles.scss';
 
-export type CreateTodoProps = {
-	todos: TodosState[];
-	setTodos: Dispatch<SetStateAction<TodosState[]>>;
-};
-
-const CreateTodo = ({ todos, setTodos }: CreateTodoProps) => {
-	const [todo, setTodo] = useState<TodosState>({ id: '', name: '', status: 'todo' });
+const CreateTodo = () => {
+	const dispatch = useDispatch();
+	const [name, setName] = useState<string>('');
 
 	useEffect(() => {
-		if (!localStorage['todos']) return;
-		setTodos(JSON.parse(localStorage.getItem('todos') || '{}'));
+		const savedTodos = localStorage.getItem('todos');
+		if (savedTodos) {
+			const parsedTodos = JSON.parse(savedTodos);
+			dispatch(addTodo(parsedTodos));
+		}
+		return;
 	}, []);
+
 	const handleCreateTodo = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (todo.name.length < 3) return toast.error('A todo must have more than 3 characters');
+		if (name.length < 3) return toast.error('A todo must have more than 3 characters');
+		if (name.length > 80) return toast.error('A todo must not be more than 80 characters');
 
-		if (todo.name.length > 80) return toast.error('A todo must not be more than 80 characters');
-
-		setTodos((prev: TodosState[]) => {
-			const list = [...prev, todo];
-			//+ Set item into local storage
-			localStorage.setItem('todos', JSON.stringify(list) || '{}');
-			return list;
-		});
+		dispatch(addTodo({ id: '', name: name, status: '' }));
 
 		toast.success('Task Created');
-		setTodo({ id: '', name: '', status: 'todo' });
+		setName('');
 	};
 	return (
 		<form className="todo_list-form" onSubmit={handleCreateTodo}>
@@ -42,8 +37,8 @@ const CreateTodo = ({ todos, setTodos }: CreateTodoProps) => {
 				type="text"
 				placeholder=" "
 				label="Write todo"
-				value={todo.name}
-				onChange={(e) => setTodo({ ...todo, id: v4(), name: e.target.value, status: 'todo' })}
+				value={name}
+				onChange={(e) => setName(e.target.value)}
 			/>
 			<button type="submit" className="todo_list-btn">
 				Add todo
