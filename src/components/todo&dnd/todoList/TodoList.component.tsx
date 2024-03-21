@@ -1,12 +1,12 @@
 import { useDrop } from 'react-dnd';
 import { toast } from 'react-hot-toast';
 
-import { TodosState, TodoState } from '../../../store/todo/todo.slice';
+import { TodosState, TodoState, updateTodo } from '../../../store/todo/todo.slice';
 import TodoItem from '../todoItem/TodoItem.component';
 
 import './todoList.styles.scss';
 import { CreateTodoProps } from '../../../routes/todo/TodoDnd.component';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 type TodoListProps = CreateTodoProps & {
 	status: string;
@@ -14,8 +14,8 @@ type TodoListProps = CreateTodoProps & {
 };
 
 const TodoList = ({ todos, status, statusList }: TodoListProps) => {
-	const todoItem = useSelector((state: TodoState) => state);
-	const [todosList, inProgress, completed] = statusList;
+	const dispatch = useDispatch();
+	const [todo, inProgress, completed] = statusList;
 	const [{ isOver }, drop] = useDrop(() => ({
 		accept: 'todo',
 		drop: (item: TodoState) => {
@@ -26,7 +26,7 @@ const TodoList = ({ todos, status, statusList }: TodoListProps) => {
 		}),
 	}));
 
-	let todosToMap = todosList;
+	let todosToMap = todo;
 	let text = 'Todo';
 	let bg = { backgroundColor: '#35f064' };
 
@@ -42,20 +42,8 @@ const TodoList = ({ todos, status, statusList }: TodoListProps) => {
 	}
 	//+ Change status on drop todo
 	const addItemToList = (id: string) => {
-		// setTodos((prev): TodosState[] => {
-		// 	const mTodos = prev.map((todo):TodoState[] => {
-		// 		if (todo. === id) {
-		// 			return {
-		// 				...todo,
-		// 				status: status,
-		// 			};
-		// 		}
-		// 		return todo;
-		// 	});
-		// 	localStorage.setItem('todos', JSON.stringify(mTodos));
-		// 	toast('Task status changed', { icon: '📓' });
-		// 	return mTodos;
-		// });
+		dispatch(updateTodo({ id: id, name: '', status: status }));
+		toast('Task status changed', { icon: '📓' });
 	};
 
 	return (
@@ -65,7 +53,7 @@ const TodoList = ({ todos, status, statusList }: TodoListProps) => {
 			</div>
 			<div className="todo-item_body">
 				{todosToMap.length > 0 &&
-					todosToMap.map((todo, index) => <TodoItem key={todo.id} todo={todo} todos={todos}></TodoItem>)}
+					todosToMap.map((todo, index) => <TodoItem key={todo.id} todo={todo}></TodoItem>)}
 			</div>
 		</div>
 	);

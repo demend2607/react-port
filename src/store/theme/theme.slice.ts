@@ -5,7 +5,7 @@ export type ThemeState = {
 };
 
 const THEME_INITIAL_STATE: ThemeState = {
-	themeValue: localStorage.getItem('themeValue') || 'default',
+	themeValue: /* localStorage.getItem('themeValue') ||  */ 'default',
 };
 
 export const themeSlice = createSlice({
@@ -14,7 +14,7 @@ export const themeSlice = createSlice({
 	reducers: {
 		toggleTheme: (state) => {
 			const themeValue = state.themeValue === 'default' ? 'custom' : 'default';
-			localStorage.setItem('themeValue', themeValue);
+			// localStorage.setItem('themeValue', themeValue);
 			return { ...state, themeValue: themeValue };
 		},
 	},

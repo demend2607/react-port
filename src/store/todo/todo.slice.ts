@@ -12,7 +12,7 @@ export type TodosState = {
 };
 
 const TODO_INITIAL_STATE: TodosState = {
-	todo: localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos') || '{}') : [],
+	todo: [],
 };
 
 export const todoSlice = createSlice({
@@ -28,8 +28,6 @@ export const todoSlice = createSlice({
 			};
 
 			const updatedTodo = [...state.todo, todo];
-			localStorage.setItem('todos', JSON.stringify(updatedTodo));
-			console.log(state.todo);
 
 			return {
 				...state,
@@ -39,11 +37,23 @@ export const todoSlice = createSlice({
 		removeTodo: (state: TodosState, action: PayloadAction<string>) => {
 			const index = state.todo.findIndex((todo) => todo.id === action.payload);
 			state.todo.splice(index, 1);
-			localStorage.setItem('todos', JSON.stringify(state.todo));
 		},
-		updateTodo: (state, action: PayloadAction<TodosState>) => {},
+		updateTodo: (state, action: PayloadAction<TodoState>) => {
+			const { id, status } = action.payload;
+			const updateTodo = state.todo.map((todo) => {
+				if (todo.id != id) return todo;
+				return {
+					...todo,
+					status: status,
+				};
+			});
+			return {
+				...state,
+				todo: updateTodo,
+			};
+		},
 	},
 });
 
-export const { addTodo, removeTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, updateTodo } = todoSlice.actions;
 export default todoSlice;

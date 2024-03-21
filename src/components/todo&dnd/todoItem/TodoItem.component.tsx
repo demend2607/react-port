@@ -8,10 +8,10 @@ import { TodoState, removeTodo } from '../../../store/todo/todo.slice';
 import { useDispatch } from 'react-redux';
 import { CreateTodoProps } from '../../../routes/todo/TodoDnd.component';
 
-type TodoItemProps = CreateTodoProps & {
+interface todoProp {
 	todo: TodoState;
-};
-const TodoItem = ({ todo }: TodoItemProps) => {
+}
+const TodoItem = ({ todo }: todoProp) => {
 	const dispatch = useDispatch();
 	const [{ isDragging }, drag] = useDrag(() => ({
 		type: 'todo',
