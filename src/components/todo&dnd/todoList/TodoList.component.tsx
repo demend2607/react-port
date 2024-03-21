@@ -42,7 +42,7 @@ const TodoList = ({ todos, status, statusList }: TodoListProps) => {
 	}
 	//+ Change status on drop todo
 	const addItemToList = (id: string) => {
-		dispatch(updateTodo({ id: id, name: '', status: status }));
+		dispatch(updateTodo({ id: id, status: status }));
 		toast('Task status changed', { icon: '📓' });
 	};
 

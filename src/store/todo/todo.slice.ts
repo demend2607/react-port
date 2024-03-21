@@ -19,28 +19,30 @@ export const todoSlice = createSlice({
 	name: 'todos',
 	initialState: TODO_INITIAL_STATE,
 	reducers: {
-		addTodo: (state = TODO_INITIAL_STATE, action: PayloadAction<TodoState>) => {
+		addTodo: (state, action) => {
 			if (!action.payload.name) return;
 			const todo = {
 				id: v4(),
 				name: action.payload.name,
 				status: 'todo',
 			};
-
-			const updatedTodo = [...state.todo, todo];
-
-			return {
-				...state,
-				todo: updatedTodo,
-			};
+			state.todo.push(todo);
+			// const updatedTodo = [todo, ...state.todo];
+			// return {
+			// 	...state,
+			// 	todo: updatedTodo,
+			// };
 		},
-		removeTodo: (state: TodosState, action: PayloadAction<string>) => {
-			const index = state.todo.findIndex((todo) => todo.id === action.payload);
-			state.todo.splice(index, 1);
+		removeTodo: (state, action) => {
+			// const index = state.todo.findIndex((todo) => todo.id === action.payload);
+			// state.todo.splice(index, 1);
+			const filteringTodo = state.todo.filter((todo) => todo.id !== action.payload.id);
+
+			return { ...state, todo: filteringTodo };
 		},
-		updateTodo: (state, action: PayloadAction<TodoState>) => {
+		updateTodo: (state, action) => {
 			const { id, status } = action.payload;
-			const updateTodo = state.todo.map((todo) => {
+			const updatedTodo = state.todo.map((todo) => {
 				if (todo.id != id) return todo;
 				return {
 					...todo,
@@ -49,7 +51,7 @@ export const todoSlice = createSlice({
 			});
 			return {
 				...state,
-				todo: updateTodo,
+				todo: updatedTodo,
 			};
 		},
 	},

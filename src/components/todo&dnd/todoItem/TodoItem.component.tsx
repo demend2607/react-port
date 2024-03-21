@@ -20,10 +20,9 @@ const TodoItem = ({ todo }: todoProp) => {
 			isDragging: !!monitor.isDragging(),
 		}),
 	}));
-	console.log(isDragging);
 
 	const handleDeleteTodos = (id: string) => {
-		dispatch(removeTodo(id));
+		dispatch(removeTodo({ id: id }));
 
 		toast('Todo removed', { icon: '🗑️' });
 	};
