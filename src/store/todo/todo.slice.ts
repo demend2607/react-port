@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
 
 export interface TodoState {
@@ -42,13 +42,15 @@ export const todoSlice = createSlice({
 		},
 		updateTodo: (state, action) => {
 			const { id, status } = action.payload;
+
 			const updatedTodo = state.todo.map((todo) => {
-				if (todo.id != id) return todo;
+				if (todo.id !== id) return todo;
 				return {
 					...todo,
 					status: status,
 				};
 			});
+
 			return {
 				...state,
 				todo: updatedTodo,

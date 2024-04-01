@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { TodosState, TodoState } from '../../../store/todo/todo.slice';
+import { TodoState } from '../../../store/todo/todo.slice';
 import TodoList from '../todoList/TodoList.component';
 
 import './dndColumn.styles.scss';

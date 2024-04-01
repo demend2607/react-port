@@ -11,15 +11,10 @@ export type PhotoProps = {
 };
 
 const PhotosList: FC<PhotoProps> = ({ photo }) => {
-	console.log(photo);
-
+	const { id, alt_description, urls } = photo;
 	return (
 		<>
-			<img
-				key={photo.id}
-				src={photo.urls.regular}
-				alt={photo.alt_description}
-				title={photo.alt_description}></img>
+			<img key={id} src={urls.regular} alt={alt_description} title={alt_description}></img>
 		</>
 	);
 };
