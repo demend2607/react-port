@@ -1,6 +1,6 @@
 {
-	"name": "dev-react",
-	"homepage": "http://demend2607.github.io/dev-react/",
+	"name": "react-port",
+	"homepage": "http://demend2607.github.io/react-port/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
